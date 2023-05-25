@@ -1,0 +1,131 @@
+<!-- <p>manage-framework works!</p> -->
+<div class="container">
+    <mat-label class="control-frame-label"><a routerLink="/dashboard/manage-framework">MANAGE FRAMEWORKS</a> / <a routerLink="/dashboard/frameworks">FRAMEWORKS</a> / {{domainDetail?.title}}</mat-label>
+    <h1 class="manage-frame-h1">{{domainDetail?.levelOneTitle | titlecase}}</h1>
+    <mat-label class="control-frame-select">{{domainDetail?.levelOneDesc}} </mat-label>
+
+    <div class="row mt-5">
+        <mat-grid-list cols="2" rowHeight="2:1">
+            <mat-grid-tile *ngFor="let image of domainDetail?.domain_detail"
+                routerLink="/dashboard/communications-security/{{image.framework_id}}/{{image._id}}">
+                <div class="mat-grid-tile-content" [ngStyle]="{'background-image': 'url('+ image?.image_url +')'}">
+                    <div class="mat-grid-tile-content-div config-content-control-library">
+                        <!-- <img src="{{image.image_url}}"> -->
+                        <mat-label class="control-lib-title">{{image.domainId}}&nbsp;{{image.title}}</mat-label>
+                        <mat-icon class="float-right">
+                            <i class="fas fa-plus-circle"></i>
+                        </mat-icon>
+                    </div>
+                </div>
+            </mat-grid-tile>
+        </mat-grid-list>
+    </div>
+    <!-- <div class="row mt-1">
+        <mat-grid-list cols="6" rowHeight="1:1">
+            <mat-grid-tile>
+                <div class="mat-grid-tile-content">
+                    <div class="mat-grid-tile-content-div config-content-control-library">
+                        <mat-label class="control-lib-title">Suppl...</mat-label>
+                        <mat-icon class="float-right">
+                            <i class="fas fa-plus-circle"></i>
+                        </mat-icon>
+                    </div>
+                </div>
+            </mat-grid-tile>
+            <mat-grid-tile>
+                <div class="mat-grid-tile-content">
+                    <div class="mat-grid-tile-content-div config-content-control-library">
+                        <mat-label class="control-lib-title">Policies</mat-label>
+                        <mat-icon class="float-right">
+                            <i class="fas fa-plus-circle"></i>
+                        </mat-icon>
+                    </div>
+                </div>
+            </mat-grid-tile>
+            <mat-grid-tile>
+                <div class="mat-grid-tile-content">
+                    <div class="mat-grid-tile-content-div config-content-control-library">
+                        <mat-label class="control-lib-title">Contin...</mat-label>
+                        <mat-icon class="float-right">
+                            <i class="fas fa-plus-circle"></i>
+                        </mat-icon>
+                    </div>
+                </div>
+            </mat-grid-tile>
+            <mat-grid-tile>
+                <div class="mat-grid-tile-content">
+                    <div class="mat-grid-tile-content-div config-content-control-library">
+                        <mat-label class="control-lib-title">Compl...</mat-label>
+                        <mat-icon class="float-right">
+                            <i class="fas fa-plus-circle"></i>
+                        </mat-icon>
+                    </div>
+                </div>
+            </mat-grid-tile>
+            <mat-grid-tile>
+                <div class="mat-grid-tile-content">
+                    <div class="mat-grid-tile-content-div config-content-control-library">
+                        <mat-label class="control-lib-title">Insident...</mat-label>
+                        <mat-icon class="float-right">
+                            <i class="fas fa-plus-circle"></i>
+                        </mat-icon>
+                    </div>
+                </div>
+            </mat-grid-tile>
+            <mat-grid-tile>
+                <div class="mat-grid-tile-content">
+                    <div class="mat-grid-tile-content-div config-content-control-library">
+                        <mat-label class="control-lib-title">Crypto...</mat-label>
+                        <mat-icon class="float-right">
+                            <i class="fas fa-plus-circle"></i>
+                        </mat-icon>
+                    </div>
+                </div>
+            </mat-grid-tile>
+        </mat-grid-list>
+    </div>
+    <div class="row mt-1">
+        <mat-grid-list cols="4" rowHeight="1:1">
+            <mat-grid-tile>
+                <div class="mat-grid-tile-content">
+                    <div class="mat-grid-tile-content-div config-content-control-library">
+                        <mat-label class="control-lib-title">Human Resou...</mat-label>
+                        <mat-icon class="float-right">
+                            <i class="fas fa-plus-circle"></i>
+                        </mat-icon>
+                    </div>
+                </div>
+            </mat-grid-tile>
+            <mat-grid-tile>
+                <div class="mat-grid-tile-content">
+                    <div class="mat-grid-tile-content-div config-content-control-library">
+                        <mat-label class="control-lib-title">Organization of...</mat-label>
+                        <mat-icon class="float-right">
+                            <i class="fas fa-plus-circle"></i>
+                        </mat-icon>
+                    </div>
+                </div>
+            </mat-grid-tile>
+            <mat-grid-tile>
+                <div class="mat-grid-tile-content">
+                    <div class="mat-grid-tile-content-div config-content-control-library">
+                        <mat-label class="control-lib-title">System acqui...</mat-label>
+                        <mat-icon class="float-right">
+                            <i class="fas fa-plus-circle"></i>
+                        </mat-icon>
+                    </div>
+                </div>
+            </mat-grid-tile>
+            <mat-grid-tile>
+                <div class="mat-grid-tile-content">
+                    <div class="mat-grid-tile-content-div config-content-control-library">
+                        <mat-label class="control-lib-title">Physical and...</mat-label>
+                        <mat-icon class="float-right">
+                            <i class="fas fa-plus-circle"></i>
+                        </mat-icon>
+                    </div>
+                </div>
+            </mat-grid-tile>
+        </mat-grid-list>
+    </div> -->
+</div>

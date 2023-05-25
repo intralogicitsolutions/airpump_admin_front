@@ -1,0 +1,51 @@
+<mat-nav-list class="sidenav-list">
+    <a mat-list-item (click)="onToggleClose()">
+        <!-- <mat-icon>input</mat-icon> -->
+        <i class="fas fa-angle-double-left minimizeiconsize"></i>
+        <span>Minimize menu</span>
+    </a>
+    <a mat-list-item routerLink="/dashboard" (click)="onToggleClose()">
+        <!-- <mat-icon>input</mat-icon> -->
+        <i class="fa fa-chart-line iconsize"></i>
+        <span>Dashboard</span>
+    </a>
+    <!-- <a mat-list-item (click)="onItemSelected()" class="menu-list-item"> -->
+        <!-- <mat-icon class="routeIcon iconsize">account_circle</mat-icon> -->
+        <!-- Ongoing Activities -->
+        <!-- <span fxFlex> -->
+            <!-- <span fxFlex></span> -->
+            <!-- <mat-icon [@indicatorRotate]="expanded ? 'expanded': 'collapsed'" class="arrowsize"> -->
+                <!-- expand_more -->
+            <!-- </mat-icon> -->
+        <!-- </span> -->
+    <!-- </a> -->
+    <!-- <div *ngIf="expanded" class="sub-menu"> -->
+        <!-- <mat-nav-list class="sidenav-list sidenav-sub iconsize"> -->
+            <!-- <a mat-list-item routerLink="/login" (click)="onToggleClose()"> -->
+                <!-- <mat-icon class="iconsize">input</mat-icon> -->
+                <!-- <span>Item 1</span> -->
+            <!-- </a> -->
+            <!-- <a mat-list-item routerLink="/login" (click)="onToggleClose()"> -->
+                <!-- <mat-icon class="iconsize">input</mat-icon> -->
+                <!-- <span>Item 2</span> -->
+            <!-- </a> -->
+        <!-- </mat-nav-list> -->
+    <!-- </div> -->
+    <a *ngIf="authStatus" mat-list-item routerLink="/risk-assessment" (click)="onToggleClose()">
+        <mat-icon class="iconsize">favorite</mat-icon>
+        <span>Risk Assessment</span>
+    </a>
+    <a *ngIf="authStatus" mat-list-item routerLink="/dashboard/manage-framework" (click)="onToggleClose()">
+        <mat-icon class="iconsize">build</mat-icon>
+        <span>Manage Frameworks</span>
+    </a>
+	<a mat-list-item routerLink="/dashboard/user-setting" (click)="onToggleClose()">
+        <mat-icon class="iconsize">person_filled</mat-icon>
+        <span>User Settings</span>
+    </a>
+    <a mat-list-item routerLink="/login" (click)="logOut();onToggleClose()">
+        <!-- <mat-icon>input</mat-icon> -->
+        <i class="fa fa-sign-out-alt iconsize"></i>
+        <span>Log Out</span>
+    </a>
+</mat-nav-list>

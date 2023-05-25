@@ -1,0 +1,147 @@
+<div class="container mt-5">
+    <h1 class="manage-frame-h1">Dashboard</h1>
+
+    <mat-tab-group [(selectedIndex)]="tab">
+        <mat-tab *ngIf="authStatus" label="READY FOR SIGN OFF">
+            <div class="row">
+                <div class="row col-12 mt-3" *ngFor="let dashboard of dashboardData | filter:false:'Sign Off':'state'">
+                    <mat-card class="example-card">
+						<mat-card-content class="">
+							<div routerLink="/dashboard/action-details/{{dashboard._id}}"  [queryParams]="{tab: '0'}" class="row col-12">
+								<div class="col-lg-8 col-md-8 col-sm-12">
+									<mat-label class="control-frame-label">ACTION {{dashboard.control_action_id}}
+									</mat-label>
+									<br />
+									<mat-label class="dash-sec-label">{{dashboard.title}}</mat-label>
+									<div class="">
+										<mat-label class="dash-desc-label">
+											Contributor:&nbsp;{{dashboard.first_name}}&nbsp;{{dashboard.last_name}}
+										</mat-label>
+									</div>
+								</div>
+								<div class="col-lg-4 col-md-4 col-sm-12 dash-main-div">
+									<mat-chip-list aria-label="Fish selection">
+										<mat-chip color="accent" selected>{{dashboard.state}}</mat-chip>
+									</mat-chip-list>
+								</div>
+							</div>
+						</mat-card-content>
+					</mat-card>
+                </div>
+            </div>
+        </mat-tab>
+        <mat-tab label="ALL ONGOING">
+            <div *ngIf="!authStatus" class="row">
+                <div class="row col-12 mt-3" *ngFor="let dashboard of dashboardData | filter:true:'Signed':'state'">
+					<mat-card class="example-card">
+						<mat-card-content class="">
+							<div routerLink="/dashboard/action-details/{{dashboard._id}}"  [queryParams]="{tab: '1'}" class="row col-12">
+								<div class="col-lg-8 col-md-8 col-sm-12">
+									<mat-label class="control-frame-label">ACTION {{dashboard.control_action_id}}
+									</mat-label>
+									<br />
+									<mat-label class="dash-sec-label">{{dashboard.title}}</mat-label>
+									<div class="">
+										<mat-label class="dash-desc-label">
+											Contributor:&nbsp;{{dashboard.first_name}}&nbsp;{{dashboard.last_name}}
+										</mat-label>
+									</div>
+								</div>
+								<div class="col-lg-4 col-md-4 col-sm-12 dash-main-div">
+									<mat-chip-list aria-label="Fish selection">
+										<mat-chip color="accent" selected>{{dashboard.state}}</mat-chip>
+									</mat-chip-list>
+								</div>
+							</div>
+						</mat-card-content>
+					</mat-card>
+				</div>
+            </div>
+			
+			<div *ngIf="authStatus" class="row">
+                <div class="mt-3">
+					<div *ngFor="let aggregate of dashboardAggregatedData" class="row col-12 mt-3">
+						<mat-card class="example-card">
+							<mat-card-content class="">
+								<div class="row col-12">
+									<div class="col-lg-8 col-md-8 col-sm-12">
+										<mat-label class="control-frame-label">{{aggregate._id?.control_action_id}}</mat-label>
+										<br />
+										<mat-label class="dash-sec-label">{{aggregate._id?.title}}</mat-label>
+										<!-- <div class=""> -->
+										<!-- <mat-label class="dash-desc-label">Due date: 2022-01-01</mat-label> -->
+										<!-- </div> -->
+									</div>
+									<div class="d-flex col-lg-4 col-md-4 col-sm-12 dash-main-div">
+										<div *ngFor="let item of aggregate.contrib" class="progress">
+										<div routerLink="/dashboard/action-details/{{item.id}}" [queryParams]="{tab: '1'}" >
+											<span  class="title timer" data-from="0" data-to="50"
+											data-speed="1800">{{item?.first_name.substr(0,1)}}.&nbsp;{{item?.last_name.substr(0,1)}}.</span>
+											<div class="overlay"></div>
+											<div class="left"></div>
+											<div class="right"></div>
+										</div>
+										</div>
+									</div>
+								</div>
+							</mat-card-content>
+						</mat-card>
+					</div>
+				</div>
+			</div>
+        </mat-tab>
+        <!-- <mat-tab label="NOT STARTED"> -->
+            <!-- <div class="row col-12 mt-3" *ngFor="let dashboard of dashboardData | filter:false:'Not Started':'state'"> -->
+				<!-- <mat-card class="example-card"> -->
+					<!-- <mat-card-content class=""> -->
+						<!-- <div routerLink="/dashboard/action-details/{{dashboard._id}}"  [queryParams]="{tab: '2'}" class="row col-12"> -->
+							<!-- <div class="col-lg-8 col-md-8 col-sm-12"> -->
+								<!-- <mat-label class="control-frame-label">ACTION {{dashboard.control_action_id}} -->
+								<!-- </mat-label> -->
+								<!-- <br /> -->
+								<!-- <mat-label class="dash-sec-label"> -->
+									<!-- {{dashboard.title}}</mat-label> -->
+								<!-- <div class=""> -->
+									<!-- <mat-label class="dash-desc-label"> -->
+										<!-- Supervisor:&nbsp;{{dashboard.sup_first_name}}&nbsp;{{dashboard.sup_last_name}}&nbsp;<strong>|</strong>&nbsp;Contributor:&nbsp;{{dashboard.first_name}}&nbsp;{{dashboard.last_name}} -->
+									<!-- </mat-label> -->
+								<!-- </div> -->
+							<!-- </div> -->
+							<!-- <div class="col-lg-4 col-md-4 col-sm-12 dash-main-div"> -->
+								<!-- <mat-chip-list aria-label="Fish selection"> -->
+									<!-- <mat-chip color="accent" selected>{{dashboard.state}}</mat-chip> -->
+								<!-- </mat-chip-list> -->
+							<!-- </div> -->
+						<!-- </div> -->
+					<!-- </mat-card-content> -->
+				<!-- </mat-card> -->
+            <!-- </div> -->
+        <!-- </mat-tab> -->
+        <mat-tab label="DONE">
+            <div class="row col-12 mt-3" *ngFor="let dashboard of dashboardData | filter:false:'Signed':'state'">
+				<mat-card class="example-card">
+					<mat-card-content class="">
+						<div routerLink="/dashboard/action-details/{{dashboard._id}}"  [queryParams]="{tab: '3'}" class="row col-12">
+							<div class="col-lg-8 col-md-8 col-sm-12">
+								<mat-label class="control-frame-label">ACTION {{dashboard.control_action_id}}
+								</mat-label>
+								<br />
+								<mat-label class="dash-sec-label">{{dashboard.title}}</mat-label>
+								<div class="">
+									<mat-label class="dash-desc-label">
+										Contributor:&nbsp;{{dashboard.first_name}}&nbsp;{{dashboard.last_name}}
+									</mat-label>
+								</div>
+							</div>
+							<div class="col-lg-4 col-md-4 col-sm-12 dash-main-div">
+								<mat-chip-list aria-label="Fish selection">
+									<mat-chip color="accent" selected>{{dashboard.state}}</mat-chip>
+								</mat-chip-list>
+							</div>
+						</div>
+					</mat-card-content>
+				</mat-card>
+			</div>
+        </mat-tab>
+    </mat-tab-group>
+</div>

@@ -1,0 +1,73 @@
+<!-- <p>manage-framework works!</p> -->
+<div class="container">
+    <mat-label class="control-frame-label">CONTROL FRAMEWORK CONFIGURATION</mat-label>
+    <h1 class="manage-frame-h1">Manage frameworks</h1>
+    <mat-label class="control-frame-select">Select wether you wish to configure your controls by risk or framework
+    </mat-label>
+
+    <div class="row col-sm-12 col-lg-12 col-md-12 mt-5">
+        <div class="col-lg-6 col-md-6 col-sm-12 mt-1">
+            <mat-card class="example-card" >
+                <mat-card-title-group>
+                    <img class="mx-auto" mat-card-xl-image
+                        src="../assets/images/framework.png" alt="Configure by framework">
+                </mat-card-title-group>
+                <mat-card-content class="mt-2">
+                    <mat-label class="configure-label">Configure by framework</mat-label><br />
+                    <mat-label class="standard-label">50 ISO standards supported</mat-label>
+                    <div class="mt-5">
+                        <mat-label class="desc-label">If you don't have the capacity to make a proper risk assessment, then following a standard is a good option.</mat-label>
+                    </div>
+                    <div class="mt-4">
+                        <a href="#" class="setup-button" routerLink="/dashboard/frameworks">SET UP</a>
+                    </div>
+                </mat-card-content>
+                <!-- <mat-card-actions>
+                    <button mat-button>LIKE</button>
+                    <button mat-button>SHARE</button>
+                  </mat-card-actions> -->
+            </mat-card>
+        </div>
+        <div class="col-lg-6 col-md-6 col-sm-12 mt-1">
+            <mat-card class="example-card">
+                <mat-card-title-group>
+                    <img class="mx-auto" mat-card-xl-image
+                        src="../assets/images/risk.png" alt="Configure by Risk">
+                </mat-card-title-group>
+                <mat-card-content class="mt-2">
+                    <mat-label class="configure-label">Configure by Risk</mat-label><br />
+                    <mat-label class="standard-label">200 Risks to choose from</mat-label>
+                    <div class="mt-5">
+                        <mat-label class="desc-label">If you know what risk you need to mitigate, this is the fastest way forward. By knowing your risk you can easily select controls that targets it.
+                        </mat-label>
+                    </div>
+                    <div class="mt-4">
+                        <a href="#" class="setup-button" routerLink="/dashboard/frameworks">SET UP</a>
+                    </div>
+                </mat-card-content>
+                <!-- <mat-card-actions>
+                    <button mat-button>LIKE</button>
+                    <button mat-button>SHARE</button>
+                  </mat-card-actions> -->
+            </mat-card>
+        </div>
+    </div>
+    <div class="row col-12 mt-5">
+        <h2 class="manage-frame-h2">Current configuration</h2>
+        <div class="ml-5 mr-5 cur-confid-div" *ngFor ="let item of frameworkConfigData">
+			<div routerLink="/dashboard/control-library/{{item._id}}">
+				<div class="col-12 config-content">
+					<mat-label class="config-label">{{item.title}} ({{item.total_assigned}}/{{item.total_rec}}) ({{(item.total_assigned/item.total_rec) | percent}})</mat-label>
+					<mat-label class="float-right config-right-text">{{item.category}}</mat-label>
+				</div>
+				<div class="col-12 config-content">
+					<mat-label class="desc-label">{{item.description}}
+					</mat-label>
+				</div>
+				<div class="mt-3 mb-3 config-content">
+					<mat-progress-bar mode="determinate" value="{{(item.total_assigned/item.total_rec)*100}}"></mat-progress-bar>
+				</div>
+			</div>
+        </div>
+    </div>
+</div>

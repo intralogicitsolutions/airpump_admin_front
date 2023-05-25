@@ -1,0 +1,28 @@
+.logo-container {
+    width: 100%;
+}
+.mat-toolbar.mat-primary {
+    background: black !important;
+    position: fixed;
+    z-index: 2;
+}   
+.logo {
+    // margin-left: 25px;
+    height: 24px;
+    width: 232px;
+    color: rgba(255, 255, 255, 0.87);
+    font-family: Roboto;
+    font-size: 20px;
+    font-weight: 500;
+    letter-spacing: 0.15px;
+    line-height: 24px;
+}
+.headericondiv {
+    width: 100%;
+}
+.headericon {
+    float: right;
+    margin-right: 35px;
+    height: 19.5px;
+    width: 16px;
+}

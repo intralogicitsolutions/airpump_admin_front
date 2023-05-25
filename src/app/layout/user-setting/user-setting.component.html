@@ -1,0 +1,52 @@
+<div class="container">
+    <mat-accordion>
+        <mat-expansion-panel class="accordian-style">
+            <mat-expansion-panel-header>
+                <mat-panel-title>
+                    Change Password
+                </mat-panel-title>
+            </mat-expansion-panel-header>
+            <form [formGroup]="form" (ngSubmit)="onSubmit()">
+
+                <table>
+                    <tr>
+                        <td><label for="password">Old Password</label> </td>
+                        <td><input type="password" class="form-control" formControlName="old_password"
+                                [ngClass]="{ 'is-invalid': submitted && f['old_password'].errors }" /></td>
+                    </tr>
+                    <tr *ngIf="submitted && f['old_password'].errors" class="invalid-feedback">
+                        <td *ngIf="f['old_password'].errors['required']">Old Password is required</td>
+                    </tr>
+                    <tr>
+                        <td><label for="password">New Password</label> </td>
+                        <td><input type="password" class="form-control" formControlName="new_password"
+                                [ngClass]="{ 'is-invalid': submitted && f['new_password'].errors }" /></td>
+                    </tr>
+                    <tr *ngIf="submitted && f['new_password'].errors" class="invalid-feedback">
+                        <td *ngIf="f['new_password'].errors['required']">New Password is required</td>
+                    </tr>
+                    <tr>
+                        <td><label for="password">Confirm Password</label> </td>
+                        <td><input type="password" class="form-control" formControlName="confirm_password"
+                                [ngClass]="{ 'is-invalid': submitted && f['confirm_password'].errors }" /></td>
+                    </tr>
+                    <tr *ngIf="submitted">
+                        <td></td>
+                        <td class="invalid-feedback invalid-feedback-no-match" *ngIf="form?.errors?.['notmatched']">
+                            Confirm Password must be match with new password</td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td>
+                            <button [disabled]="loading" class="btn btn-primary forgot-btn">
+                                <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+                                Change
+                            </button>
+                        </td>
+                    </tr>
+                </table>
+            </form>
+
+        </mat-expansion-panel>
+    </mat-accordion>
+</div>

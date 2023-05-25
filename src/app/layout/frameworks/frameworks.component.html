@@ -1,0 +1,92 @@
+<!-- <p>manage-framework works!</p> -->
+<div *ngIf="!authStatus" class="container">
+	<mat-label class="control-frame-select">{{serviceErrorMsg}}</mat-label>
+</div>
+<div *ngIf="authStatus" class="container">
+    <mat-label class="control-frame-label"><a routerLink="/dashboard/manage-framework">MANAGE FRAMEWORKS</a> / FRAMEWORKS</mat-label>
+    <h1 class="manage-frame-h1">Frameworks</h1>
+    <mat-label class="control-frame-select">Select which standard you want to follow within your organisation.</mat-label>
+
+    <!-- <div class="row"> -->
+        <!-- <div class="col-12 mt-4" *ngFor="let framework of frameworkData"> -->
+            <!-- <mat-card class="example-card" > -->
+                <!-- <mat-card-title-group> -->
+                <!-- </mat-card-title-group> -->
+                <!-- <mat-card-content class="mt-2"> -->
+                    <!-- <div class="d-flex"> -->
+                        <!-- <div> -->
+                            <!-- <i class="fas fa-heart frameworks-card" ></i> -->
+                        <!-- </div> -->
+                        <!-- <div> -->
+                            <!-- <mat-label class="configure-label">{{framework.title}}</mat-label><br /> -->
+                            <!-- <mat-label class="standard-label">{{framework.category}}</mat-label> -->
+                        <!-- </div> -->
+                    <!-- </div> -->
+
+                    <!-- <div class="mt-5"> -->
+                        <!-- <mat-label class="desc-label">{{framework.description}}</mat-label> -->
+                    <!-- </div> -->
+                    <!-- <div class="mt-4" > -->
+                        <!-- <a href="#" class="setup-button" routerLink="/dashboard/control-library/{{framework._id}}">SET UP</a> -->
+                    <!-- </div> -->
+                <!-- </mat-card-content> -->
+            <!-- </mat-card> -->
+            <!-- <mat-progress-bar class="frame-progress" mode="determinate" value="75"></mat-progress-bar> -->
+        <!-- </div> -->
+
+    <!-- </div> -->
+	
+	<div class="row">
+        <mat-grid-list cols="3" rowHeight="1:1">
+            <mat-grid-tile *ngFor="let framework of frameworkData | slice:0:3">
+                 <div class="mat-grid-tile-content">
+                     <div class="mat-grid-tile-content-div config-content-control-library">
+					 <mat-card class="example-card" >
+						<div>
+                            <i class="fas fa-heart frameworks-card" ></i>
+                        </div>
+						<div>
+							<mat-label class="control-lib-title">{{framework.title}}</mat-label>
+						</div>
+						<div class="mt-5">
+							<mat-label class="desc-label">{{framework.description}}</mat-label>
+						</div>
+						<div class="mt-4" >
+							<a href="#" class="setup-button" routerLink="/dashboard/control-library/{{framework._id}}">SET UP</a>
+						</div>
+						  </mat-card>
+                     </div>
+                 </div>
+             </mat-grid-tile>	
+		</mat-grid-list>	
+	</div>
+	
+	<div class="row">
+        <div class="col-12 mt-4" *ngFor="let framework of frameworkData | slice:3">
+            <mat-card class="example-card" >
+                <mat-card-title-group>
+                </mat-card-title-group>
+                <mat-card-content class="mt-2">
+                    <div class="d-flex">
+                        <div>
+                            <i class="fas fa-heart frameworks-card" ></i>
+                        </div>
+                        <div>
+                            <mat-label class="configure-label">{{framework.title}}</mat-label><br />
+                            <mat-label class="standard-label">{{framework.category}}</mat-label>
+                        </div>
+                    </div>
+
+                    <div class="mt-5">
+                        <mat-label class="desc-label">{{framework.description}}</mat-label>
+                    </div>
+                    <div class="mt-4" >
+                        <a href="#" class="setup-button" routerLink="/dashboard/control-library/{{framework._id}}">SET UP</a>
+                    </div>
+                </mat-card-content>
+            </mat-card>
+            <!-- <mat-progress-bar class="frame-progress" mode="determinate" value="75"></mat-progress-bar> -->
+        </div>
+
+    </div>
+</div>

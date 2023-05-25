@@ -1,0 +1,339 @@
+// Custom Theming for Angular Material
+// For more information: https://material.angular.io/guide/theming
+@use "@angular/material" as mat;
+// Plus imports for other components in your app.
+
+// Include the common styles for Angular Material. We include this here so that you only
+// have to load a single css file for Angular Material in your app.
+// Be sure that you only ever include this mixin once!
+@include mat.core();
+
+// Define the palettes for your theme using the Material Design palettes available in palette.scss
+// (imported above). For each palette, you can optionally specify a default, lighter, and darker
+// hue. Available color palettes: https://material.io/design/color/
+$jonas-primary: mat.define-palette(mat.$indigo-palette);
+$jonas-accent: mat.define-palette(mat.$pink-palette, A200, A100, A400);
+
+// The warn palette is optional (defaults to red).
+$jonas-warn: mat.define-palette(mat.$red-palette);
+
+// Create the theme object. A theme consists of configurations for individual
+// theming systems such as "color" or "typography".
+$jonas-theme: mat.define-light-theme(
+  (
+    color: (
+      primary: $jonas-primary,
+      accent: $jonas-accent,
+      warn: $jonas-warn,
+    ),
+  )
+);
+
+// Include theme styles for core and each component used in your app.
+// Alternatively, you can import and @include the theme mixins for each component
+// that you are using.
+@include mat.all-component-themes($jonas-theme);
+
+/* You can add global styles to this file, and also import other style files */
+
+/* Importing Bootstrap SCSS file. */
+@import "~bootstrap/scss/bootstrap";
+
+// regular style toast
+@import "~ngx-toastr/toastr";
+
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+.container {
+  padding-top: var(--bs-gutter-x, 5.5rem);
+}
+.control-frame-label {
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 1.5px;
+  color: rgba(0, 0, 0, 0.87);
+}
+.manage-frame-h1 {
+  font-size: 60px !important;
+  font-weight: 300 !important;
+  line-height: initial !important;
+  color: rgba(0, 0, 0, 0.87);
+}
+.control-frame-select {
+  letter-spacing: 0.25px;
+  font-size: 14px;
+  color: rgba(0, 0, 0, 0.74);
+}
+mat-card {
+  box-shadow: none !important;
+  border: 2px solid #d6d6d6 !important;
+}
+.mat-card > .mat-card-xl-image:first-child {
+  margin: 0px !important;
+}
+.configure-label {
+  font-size: 20px;
+  font-weight: 500;
+  color: rgba(0, 0, 0, 0.87);
+  letter-spacing: 0.15px;
+}
+.standard-label {
+  color: rgba(0, 0, 0, 0.6);
+  font-size: 14px;
+  letter-spacing: 0.25px;
+}
+.desc-label {
+  font-size: 14px;
+  color: rgba(0, 0, 0, 0.6);
+  letter-spacing: 0.25px;
+}
+.manage-frame-h2 {
+  font-size: 48px !important;
+  color: rgba(0, 0, 0, 0.87);
+}
+.manage-frame-h3 {
+  font-size: 34px !important;
+  font-weight: 400 !important;
+  line-height: 36px !important;
+  letter-spacing: 0;
+  color: rgba(0, 0, 0, 0.87);
+}
+.float-right {
+  float: right !important;
+}
+.config-content {
+  padding-left: 15px;
+  padding-right: 15px;
+}
+.config-label {
+  font-size: 16px;
+  letter-spacing: 0.15px;
+  color: rgba(0, 0, 0, 0.87);
+}
+.config-right-text {
+  font-size: 12px;
+  letter-spacing: 0.4px;
+  color: rgba(0, 0, 0, 0.87);
+}
+.mat-progress-bar-fill::after {
+  background-color: #018786;
+}
+.row {
+  margin-right: 0;
+  margin-left: 0;
+}
+.mat-typography h2 {
+  line-height: initial !important;
+}
+.setup-button {
+  color: #7000f8;
+  text-decoration: none;
+  font-size: 12px;
+  letter-spacing: 0.4px;
+  font-weight: 600;
+}
+.material-icons {
+  font-family: "Material Icons";
+  font-weight: normal;
+  font-style: normal;
+  font-size: 20px;
+  line-height: 1;
+  letter-spacing: normal;
+  text-transform: none;
+  display: inline-block;
+  white-space: nowrap;
+  word-wrap: normal;
+  direction: ltr;
+  -webkit-font-feature-settings: "liga";
+  -webkit-font-smoothing: antialiased;
+}
+// .config-content-control-library {
+//   padding: 6px 15px 10px 20px;
+// }
+.container {
+  padding-right: var(--bs-gutter-x, 3.75rem);
+  padding-left: var(--bs-gutter-x, 3.75rem);
+}
+@media (max-width: 990px) {
+  .container {
+    padding-right: var(--bs-gutter-x, 0.75rem);
+    padding-left: var(--bs-gutter-x, 0.75rem);
+  }
+}
+.mat-pseudo-checkbox-checked,
+.mat-pseudo-checkbox-indeterminate,
+.mat-accent .mat-pseudo-checkbox-checked,
+.mat-accent .mat-pseudo-checkbox-indeterminate {
+  background: #017374 !important;
+}
+.mat-pseudo-checkbox {
+  border: 2px solid #77898a !important;
+  height: 18px !important;
+  width: 18px !important;
+}
+.mat-pseudo-checkbox-checked::after {
+  left: 2px !important;
+  width: 8px !important;
+  height: 4px !important;
+}
+.mat-snack-bar-container {
+  min-width: 800px !important;
+  min-height: 100px !important;
+  background-color: #212121 !important;
+}
+.mat-simple-snackbar-action {
+  color: #bb86fc !important;
+}
+.modal-backdrop {
+  background-color: transparent !important;
+  z-index: inherit !important;
+}
+.mat-tab-label {
+  color: rgba(187, 134, 252, 0.38);
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 1.25px;
+}
+.mat-tab-label-active {
+  color: #017374;
+}
+.mat-tab-group.mat-primary .mat-ink-bar,
+.mat-tab-nav-bar.mat-primary .mat-ink-bar {
+  background-color: #0c7879 !important;
+}
+.dash-desc-label {
+  color: rgba(18, 18, 18, 0.87);
+  font-size: 12px !important;
+  letter-spacing: 0.4px;
+}
+.dash-sec-label {
+  font-weight: 450 !important;
+  font-size: 16px !important;
+  color: rgba(0, 0, 0, 0.87);
+  letter-spacing: 0.15px;
+}
+.dash-main-div {
+  margin: auto !important;
+  text-align: end !important;
+  justify-content: flex-end;
+}
+.mat-chip-list-wrapper {
+  display: inherit !important;
+}
+.mat-chip.mat-standard-chip.mat-chip-selected.mat-accent {
+  background-color: #cf6679 !important;
+  color: rgba(255, 255, 255, 0.87);
+  font-weight: 100;
+  font-size: 14px !important;
+  letter-spacing: 0.25px;
+  border-radius: 16px;
+}
+.mat-chip.mat-standard-chip.mat-chip-selected.mat-primary {
+  background-color: rgb(112 239 222);
+  color: rgba(0, 0, 0, 0.87);
+  border-radius: 16px;
+  background-color: #70efde;
+  font-weight: 100;
+  font-size: 14px;
+  letter-spacing: 0.25px;
+}
+.done-check {
+  color: grey;
+  font-weight: 600;
+  margin-right: 5px;
+}
+.mat-content {
+  width: 100%;
+  display: initial !important;
+}
+.float-end {
+  text-align: end;
+}
+.mat-expansion-panel-header {
+  padding: 0px !important;
+  height: auto !important;
+}
+
+.toast-container .ngx-toastr {
+  position: relative;
+  overflow: hidden;
+  width: 500px;
+  padding: 15px !important;
+  // border-radius: 15px !important;
+  background-position: 15px center;
+  background-repeat: no-repeat;
+  background-size: 24px;
+  box-shadow: 0 0 12px #999;
+  color: #000 !important;
+  // border: 1px solid white !important
+}
+
+.toast-success {
+  background-color: white !important;
+  background-image: none !important;
+}
+.toast-success .toast-title {
+  font-weight: 400 !important;
+  font-size: 16px !important;
+  letter-spacing: 0.25px;
+  color: #000000;
+}
+.toast-success .toast-message {
+  font-size: 14px;
+  margin-top: 4px;
+  letter-spacing: 0.25px;
+  color: rgba(0, 0, 0, 0.74);
+}
+.toast-success .toast-close-button {
+  color: #000000 !important;
+}
+.commu-security-img {
+  height: 300px;
+}
+.expansion .mat-list-base .mat-list-item,
+.expansion .mat-list-base .mat-list-option {
+  display: flex;
+  height: inherit !important;
+  -webkit-tap-highlight-color: transparent;
+  width: 100%;
+  padding: 0px;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+}
+.expansion .mat-list-base .mat-list-item .mat-list-item-content,
+.expansion .mat-list-base .mat-list-option .mat-list-item-content {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  box-sizing: border-box;
+  padding: 16px !important;
+  position: relative;
+  height: inherit;
+}
+
+.toast-error {
+  // background-color: white !important;
+  background-image: none !important;
+}
+.toast-error .toast-title {
+  font-weight: 400 !important;
+  font-size: 16px !important;
+  letter-spacing: 0.25px;
+  color: #fff;
+}
+.toast-error .toast-message {
+  font-size: 14px;
+  margin-top: 4px;
+  letter-spacing: 0.25px;
+  color: #fff;
+}
+.toast-error .toast-close-button {
+  color: #fff !important;
+}

@@ -1,0 +1,328 @@
+<div class="pl-5 pr-0 action-details-main">
+    <div class="row col-sm-12 col-12 col-lg-12 mt-5">
+        <div class="col-sm-12 col-md-12 col-lg-8 mt-3 action-section pb-3">
+            <div class="d-flex justify-content-between align-items-center">
+                <h1 class="manage-frame-h1">{{activityData?.title}}</h1>
+                <div class="d-flex align-items-center ">
+                    <button *ngIf="activityData?.state !== 'Signed'" [disabled]="button_disabled"  mat-raised-button color="primary" (click)="updateActionDetailsStatus()" class="headericon sign-off-btn">
+                        {{stateMachine[activityData?.state]}} 
+                    </button>
+					
+					<mat-label *ngIf="activityData?.state === 'Signed'" class="headericon btn done-btn">{{stateMachine[activityData?.state]}}</mat-label>
+                    <div class="dropdown-container sign-off" tabindex="-1">
+                        <div class="three-dots-sign-off"></div>
+                    </div>
+                </div>
+
+            </div>
+            <!-- <mat-label class="control-frame-label">ISO2702 International Standard / FRAMEWORKS /A.13/ A.13.2.3 -->
+            <!-- </mat-label> -->
+            <mat-label class="control-frame-label"> <a routerLink="/dashboard" [queryParams]="{ tab: tab}">DASHBOARD</a>&nbsp;/&nbsp;{{activityData?.control_action_id}}
+            </mat-label>
+            <div class="row col-sm-12 col-lg-12 col-md-12 chip-list mt-3">
+                <mat-chip-list aria-label="Fish selection">
+                    <mat-chip color="primary" selected>
+                        <mat-icon>done</mat-icon>{{activityData?.state}}
+                    </mat-chip>
+                </mat-chip-list>
+                <mat-chip-list aria-label="Fish selection">
+                    <mat-chip class="date-chip" color="primary" selected>
+                        <mat-icon>today</mat-icon>Due date: {{getDateFormat(activityData?.due_date)}}
+                    </mat-chip>
+                </mat-chip-list>
+                <mat-chip-list aria-label="Fish selection">
+                    <mat-chip class="date-chip" color="primary" selected>
+                        <mat-icon>today</mat-icon>Start date: {{getDateFormat(activityData?.opened_date)}}
+                    </mat-chip>
+                </mat-chip-list>
+            </div>
+            <div class="mt-3">
+                <!-- <mat-label class="control-frame-select">Select which standard you want to follow within your
+                    organisation.
+                </mat-label> -->
+                <mat-label class="control-frame-select">
+                    {{!readMore?activityData?.description:activityData?.description|
+                    slice:0:100}}<span *ngIf="readMore && !lengthFlag">...</span>
+                    <a href="javascript:;" class="setup-button float-right" (click)="readMore=!readMore"
+                        *ngIf="readMore && activityData?.description.length > 100">READ MORE</a>
+                    <a href="javascript:;" class="setup-button float-right" (click)="readMore=!readMore"
+                        *ngIf="!readMore && activityData?.description.length >100">READ LESS</a>
+                </mat-label>
+            </div>
+            <!-- <div *ngIf="authStatus" class="mt-4"> -->
+            <!-- <h2>Todo</h2> -->
+            <!-- <mat-selection-list #controlLibraryDetail> -->
+            <!-- <mat-list-option class="mt-0" checkboxPosition="after"> -->
+            <!-- <div class="col-12" style="align-items: center; justify-content: space-between"> -->
+            <!-- <mat-label class="config-label">Implement monitoring </mat-label><br /> -->
+            <!-- <mat-label class="title-label"> -->
+            <!-- Andrew Jonsson -->
+            <!-- <li style="margin-left: 5px">completed 2021-02-01</li> -->
+            <!-- </mat-label> -->
+            <!-- <mat-label class="float-end config-right-text"> </mat-label> -->
+            <!-- </div> -->
+            <!-- <mat-divider></mat-divider> -->
+            <!-- </mat-list-option> -->
+            <!-- </mat-selection-list> -->
+            <!-- <mat-selection-list #controlLibraryDetail> -->
+            <!-- <mat-list-option class="mt-0" checkboxPosition="after"> -->
+            <!-- <div class="col-12" style="align-items: center; justify-content: space-between"> -->
+            <!-- <mat-label class="config-label">Implement monitoring </mat-label><br /> -->
+            <!-- <mat-label class="title-label"> -->
+            <!-- Andrew Jonsson -->
+            <!-- <li style="margin-left: 5px">completed 2021-02-01</li> -->
+            <!-- </mat-label> -->
+            <!-- <mat-label class="float-end config-right-text"> </mat-label> -->
+            <!-- </div> -->
+            <!-- <mat-divider></mat-divider> -->
+            <!-- </mat-list-option> -->
+            <!-- </mat-selection-list> -->
+            <!-- <mat-selection-list #controlLibraryDetail> -->
+            <!-- <mat-list-option class="mt-0" checkboxPosition="after"> -->
+            <!-- <div class="col-12" style="align-items: center; justify-content: space-between"> -->
+            <!-- <mat-label class="config-label">Implement monitoring </mat-label><br /> -->
+            <!-- <mat-label class="title-label"> -->
+            <!-- Andrew Jonsson -->
+            <!-- <li style="margin-left: 5px">completed 2021-02-01</li> -->
+            <!-- </mat-label> -->
+            <!-- <mat-label class="float-end config-right-text"> </mat-label> -->
+            <!-- </div> -->
+            <!-- <mat-divider></mat-divider> -->
+            <!-- </mat-list-option> -->
+            <!-- </mat-selection-list> -->
+            <!-- <mat-selection-list #controlLibraryDetail> -->
+            <!-- <mat-list-option class="mt-0" checkboxPosition="after"> -->
+            <!-- <div class="col-12" style="align-items: center; justify-content: space-between"> -->
+            <!-- <mat-label class="config-label">Implement monitoring </mat-label><br /> -->
+            <!-- <mat-label class="title-label"> -->
+            <!-- Andrew Jonsson -->
+            <!-- <li style="margin-left: 5px">completed 2021-02-01</li> -->
+            <!-- </mat-label> -->
+            <!-- <mat-label class="float-end config-right-text"> </mat-label> -->
+            <!-- </div> -->
+            <!-- <mat-divider></mat-divider> -->
+            <!-- </mat-list-option> -->
+            <!-- </mat-selection-list> -->
+            <!-- <mat-selection-list #controlLibraryDetail class="include-action-list"> -->
+            <!-- <mat-list-option class="mt-0 pr-0 include"> -->
+            <!-- <div class="col-12 d-flex" style="align-items: center; justify-content: space-between"> -->
+            <!-- <div class=""> -->
+            <!-- <mat-label class="config-label">Air ventilation works </mat-label><br /> -->
+            <!-- <mat-label class="title-label"> N/A </mat-label> -->
+            <!-- </div> -->
+            <!-- <mat-label class="float-end config-right-text"> -->
+            <!-- INCLUDE -->
+            <!-- </mat-label> -->
+            <!-- </div> -->
+            <!-- <mat-divider></mat-divider> -->
+            <!-- </mat-list-option> -->
+            <!-- </mat-selection-list> -->
+            <!-- </div> -->
+
+            <div class="mt-5">
+                <div class="d-flex justify-content-between flex-wrap">
+                    <h2>Assignees</h2>
+                    <button *ngIf="authStatus" [disabled]="action_signed" class="btn btn-primary" (click)="openSnackBar()">
+                        <mat-icon>add</mat-icon>Assign
+                    </button>
+                </div>
+                <div class="list-group">
+                    <!-- <a href="javascript:void(0)" -->
+                    <!-- class="list-group-item list-group-item-action flex-column align-items-start active"> -->
+                    <!-- <div class="d-flex w-100"> -->
+                    <!-- <img class="" src="../../../assets/images/framework.png" width="70px" -->
+                    <!-- height="max-content" /> -->
+                    <!-- <div class="d-flex w-100 justify-content-between content-div"> -->
+                    <!-- <div class=""> -->
+                    <!-- <mat-label class="config-label">{{activityData?.first_name}} -->
+                    <!-- {{activityData?.last_name}} </mat-label><br /> -->
+                    <!-- <mat-label class="title-label"> responsible </mat-label> -->
+                    <!-- </div> -->
+                    <!-- <div class="dropdown-container" tabindex="-1"> -->
+                    <!-- <div class="three-dots"></div> -->
+                    <!-- </div> -->
+                    <!-- </div> -->
+                    <!-- </div> -->
+                    <!-- </a> -->
+                    <a href="javascript:void(0)"
+                        class="list-group-item list-group-item-action flex-column align-items-start active"
+                        *ngFor="let contributor of activityData?.contributors">
+                        <div class="d-flex w-100">
+                            <img class="" src="../../../assets/images/framework.png" width="70px" />
+                            <div class="d-flex w-100 justify-content-between content-div">
+                                <div class="">
+                                    <mat-label class="config-label">{{contributor.first_name}} {{contributor.last_name}}
+                                    </mat-label><br />
+                                    <mat-label class="title-label">Contributor</mat-label>
+                                </div>
+                                <div class="dropdown-container" tabindex="-1">
+                                    <div class="three-dots"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+            <div class="mt-5">
+                <div class="d-flex justify-content-between flex-wrap">
+                    <h2 class="mb-0">Collected Evidence</h2>
+                    <div *ngIf="!action_signed" class="">
+                        <input id="file-upload" type="file" (change)="uploadEvidence($event);" />
+                        <label class="mb-0" for="file-upload">
+                            <div class="btn btn-primary">
+                                <mat-icon>add</mat-icon>Add Evidence
+                            </div>
+                        </label>
+                    </div>
+                </div>
+                <div class="list-group">
+                    <a href="javascript:void(0)"
+                        class="list-group-item list-group-item-action flex-column align-items-start active"
+                        *ngFor="let evidence of activityData?.evidence">
+                        <div class="d-flex w-100">
+                            <img class="" src="https://dummyimage.com/50X35/#e6e6e6/fff" width="70px"
+                                height="max-content" />
+                            <div class="d-flex w-100 justify-content-between content-div ml-3">
+                                <div class="">
+                                    <mat-label class="config-label"><a href="javascript:void(0)"
+                                            (click)="navigatetoDoc(evidence)">{{evidence.evidence_name}}</a>
+                                    </mat-label><br />
+                                    <mat-label class="title-label">
+                                        uploaded {{getDateFormat(evidence.evidence_timestamp)}}
+                                    </mat-label>
+                                </div>
+                                <div class="dropdown-container" tabindex="-1">
+                                    <div class="three-dots"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+
+        </div>
+
+        <div class="col-sm-12 col-md-12 col-lg-4 comment-section pb-3">
+            <div class="d-flex justify-content-between mt-4 flex-wrap align-items-center comment-header">
+                <h2 class="mb-0">Activity Comments</h2>
+                <button class="btn btn-primary comment-btn" [disabled]="action_signed" (click)="addComment()">
+                    <mat-icon>add</mat-icon>Comment
+                </button>
+            </div>
+            <div class="col-12 mt-3 comment-add" *ngIf="commentFlag">
+                <textarea placeholder="Comment" matInput [(ngModel)]="comment" class="comment-input"
+                    (keyup.enter)="addCommentData()"></textarea>
+            </div>
+            <div class="col-12 mt-3">
+                <div class="" *ngFor="let comment of sortByLastModifiedDesc">
+                    <div class="action-comment-section">
+                        <mat-label class="config-label">
+                            {{comment.comment_text}}
+                        </mat-label>
+                    </div>
+                    <div class="action-commnets">
+                        <mat-label class="action-comment-config-label">
+                            {{comment.comment_user_name}}
+                        </mat-label>
+                        <mat-label class="control-frame-label">
+                            posted comment {{getDateFormat(comment.comment_timestamp)}}
+                        </mat-label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="assignResponsibleModal" class="center modal fade" tabindex="-1" role="dialog" aria-hidden="true"
+        dialogClass="modal-dialog-centered" data-keyboard="false" data-backdrop="static">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title mb-0">Assign Responsible</h5>
+                </div>
+                <div class="modal-body">
+                    <form [formGroup]="assignForm" (ngSubmit)="submitAssignUser()" novalidate>
+                        <!-- <mat-form-field appearance="outline"> -->
+                            <!-- <mat-label>Responsible</mat-label> -->
+                            <!-- <mat-chip-list #chipList aria-label="Responsible selection"> -->
+                                <!-- <mat-chip *ngFor="let user of assignUserArray" [selectable]="selectable" -->
+                                    <!-- [removable]="removable" (removed)="removeAssignUser(user)"> -->
+                                    <!-- {{user?.first_name}} {{user?.last_name}} -->
+                                    <!-- <button matChipRemove *ngIf="removable"> -->
+                                        <!-- <mat-icon>cancel</mat-icon> -->
+                                    <!-- </button> -->
+                                <!-- </mat-chip> -->
+                                <!-- <input placeholder="Search" #searchInput [matAutocomplete]="auto" -->
+                                    <!-- [matChipInputFor]="chipList" formControlName="assignUser"> -->
+                                <!-- <mat-autocomplete #auto="matAutocomplete" (optionSelected)="addAssignUser()" -->
+                                    <!-- [displayWith]="displayFn"> -->
+                                    <!-- <mat-option *ngFor="let street of filteredOptions | async" [value]="street"> -->
+                                        <!-- {{street.first_name}} {{street.last_name}} -->
+                                    <!-- </mat-option> -->
+                                <!-- </mat-autocomplete> -->
+                            <!-- </mat-chip-list> -->
+                            <!-- <mat-icon matSuffix>search</mat-icon> -->
+                            <!-- <mat-hint>You can search by name or role</mat-hint> -->
+                        <!-- </mat-form-field> -->
+                        <mat-form-field appearance="outline">
+                            <mat-label>Contributor</mat-label>
+                            <mat-chip-list #chipList1 aria-label="Contributor selection">
+                                <mat-chip *ngFor="let user of contibuteUserArray" [selectable]="selectable"
+                                    [removable]="removable" (removed)="removeContributeUser(user)">
+                                    {{user.first_name}} {{user.last_name}}
+                                    <button matChipRemove *ngIf="removable">
+                                        <mat-icon>cancel</mat-icon>
+                                    </button>
+                                </mat-chip>
+                                <input placeholder="Search" #searchInput1 [matAutocomplete]="auto1"
+                                    [matChipInputFor]="chipList1" formControlName="contibuteUser">
+                                <mat-autocomplete #auto1="matAutocomplete" (optionSelected)="addContributeUser()"
+                                    [displayWith]="displayFn">
+                                    <mat-option *ngFor="let street of filteredContributorOptions | async"
+                                        [value]="street">
+                                        {{street.first_name}} {{street.last_name}}
+                                    </mat-option>
+                                </mat-autocomplete>
+                            </mat-chip-list>
+                            <mat-icon matSuffix>search</mat-icon>
+                            <mat-hint>You can search by name or role</mat-hint>
+                        </mat-form-field>
+                        <!-- <hr> -->
+                        <div class="mt-3">
+                            <h5 class="modal-title mb-0">Current Contributor Assignments</h5>
+                            <hr class="m-0" />
+                            <div class="mt-3">
+                                <div class="list-group">
+                                    <a href="javascript:void(0)"
+                                        class="list-group-item list-group-item-action flex-column align-items-start active"
+                                        *ngFor="let contributor of assignedUserData">
+                                        <div class="d-flex w-100">
+                                            <div class="d-flex w-100 justify-content-between content-div">
+                                                <div class="">
+                                                    <mat-label class="config-label-1">{{contributor.first_name}}
+                                                        {{contributor.last_name}},&nbsp;{{contributor.job_role}}
+                                                    </mat-label>
+													<!-- <br /> -->
+                                                    <!-- <mat-label class="title-label-1">{{contributor.job_role}} -->
+                                                    <!-- </mat-label> -->
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- <hr/> -->
+
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">CANCEL</button>
+                            <button type="submit" class="btn btn-primary">DISPATCH</button>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>

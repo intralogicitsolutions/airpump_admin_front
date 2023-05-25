@@ -1,0 +1,88 @@
+<!-- ******************************** -->
+<!-- Code for the pop up action plane -->
+<!-- ******************************** -->
+
+<div class="modal-content center">
+    <div class="modal-header">
+        <h5 class="modal-title mb-0">Assign Responsible</h5>
+    </div>
+    <div class="modal-body">
+        <form [formGroup]="assignForm" (ngSubmit)="submitAssignUser()">
+            <input type="text" class="form-control">
+            <mat-form-field appearance="outline">
+                <mat-label>Responsible</mat-label>
+                <mat-chip-list #chipList aria-label="Responsible selection">
+                    <mat-chip *ngFor="let user of assignUserArray" [selectable]="selectable" [removable]="removable"
+                        (removed)="removeAssignUser(user)">
+                        {{user.first_name}} {{user.last_name}}
+                        <button matChipRemove *ngIf="removable">
+                            <mat-icon>cancel</mat-icon>
+                        </button>
+                    </mat-chip>
+                    <input placeholder="Search" #searchInput [matAutocomplete]="auto" [matChipInputFor]="chipList"
+                        formControlName="assignUser">
+                    <mat-autocomplete #auto="matAutocomplete" (optionSelected)="addAssignUser()"
+                        [displayWith]="displayFn">
+                        <mat-option *ngFor="let street of filteredOptions | async" [value]="street">
+                            {{street.first_name}} {{street.last_name}}
+                        </mat-option>
+                    </mat-autocomplete>
+                </mat-chip-list>
+                <mat-icon matSuffix>search</mat-icon>
+                <mat-hint>You can search by name or role</mat-hint>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>Contributor</mat-label>
+                <mat-chip-list #chipList1 aria-label="Contributor selection">
+                    <mat-chip *ngFor="let user of contibuteUserArray" [selectable]="selectable" [removable]="removable"
+                        (removed)="removeContributeUser(user)">
+                        {{user.first_name}} {{user.last_name}}
+                        <button matChipRemove *ngIf="removable">
+                            <mat-icon>cancel</mat-icon>
+                        </button>
+                    </mat-chip>
+                    <input placeholder="Search" #searchInput1 [matAutocomplete]="auto1" [matChipInputFor]="chipList1"
+                        formControlName="contibuteUser">
+                    <mat-autocomplete #auto1="matAutocomplete" (optionSelected)="addContributeUser()"
+                        [displayWith]="displayFn">
+                        <mat-option *ngFor="let street of filteredContributorOptions | async" [value]="street">
+                            {{street.first_name}} {{street.last_name}}
+                        </mat-option>
+                    </mat-autocomplete>
+                </mat-chip-list>
+                <mat-icon matSuffix>search</mat-icon>
+                <mat-hint>You can search by name or role</mat-hint>
+            </mat-form-field>
+            <!-- <hr> -->
+            <div class="mt-3">
+                <h5 class="modal-title mb-0">Current Contributor Assignments</h5>
+                <hr class="m-0" />
+                <div class="mt-3">
+                    <div class="list-group">
+                        <a href="javascript:void(0)"
+                            class="list-group-item list-group-item-action flex-column align-items-start active"
+                            *ngFor="let contributor of assignedUserData">
+                            <div class="d-flex w-100">
+                                <div class="d-flex w-100 justify-content-between content-div">
+                                    <div class="">
+                                        <mat-label class="config-label-1">{{contributor.first_name}}
+                                            {{contributor.last_name}}
+                                        </mat-label><br />
+                                        <mat-label class="title-label-1">{{contributor.job_role}}
+                                        </mat-label>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" (click)="closeModal()">CANCEL</button>
+                <button type="submit" class="btn btn-primary">DISPATCH</button>
+            </div>
+        </form>
+    </div>
+
+</div>

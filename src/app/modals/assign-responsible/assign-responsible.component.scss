@@ -1,0 +1,247 @@
+// .accordian-style {
+//     padding: 15px !important;
+//     // display: contents;
+//     background-color: transparent;
+//     box-shadow: none;
+//   }
+//   .mat-expansion-panel-spacing {
+//     background-color: white !important;
+//     box-shadow: 0px 3px 1px -2px rgb(0 0 0 / 20%), 0px 2px 2px 0px rgb(0 0 0 / 14%), 0px 1px 5px 0px rgb(0 0 0 / 12%) !important;
+//   }
+//   /* side modal */
+//   .basic {
+//     &.modal {
+//       // background: rgba(0, 0, 0, 0.6);
+//       position: fixed;
+//       top: 0;
+//       right: 0;
+//       bottom: 0;
+//       left: 0;
+//       z-index: 1050;
+//       display: none;
+//       /*overflow: hidden;*/
+//       -webkit-overflow-scrolling: touch;
+//       outline: 0;
+//     }
+//     &.fade {
+//       opacity: 0;
+//       -webkit-transition: opacity 0.15s linear;
+//       -o-transition: opacity 0.15s linear;
+//       transition: opacity 0.15s linear;
+//       &.in {
+//         opacity: 1;
+//         overflow: hidden !important;
+//       }
+//     }
+//     &.modal.fade {
+//       &.in .modal-dialog {
+//         -webkit-transform: translate(0, 0);
+//         -ms-transform: translate(0, 0);
+//         -o-transform: translate(0, 0);
+//         transform: translate(0, 0);
+//       }
+//       .modal-dialog {
+//         -webkit-transition: all 0.3s ease-out;
+//         -o-transition: all 0.3s ease-out;
+//         transition: all 0.3s ease-out;
+//         -webkit-transform: translate(0, -25%);
+//         -ms-transform: translate(0, -25%);
+//         -o-transform: translate(0, -25%);
+//         transform: translate(0, -25%);
+//       }
+//     }
+//     .basic-close {
+//       position: absolute;
+//       top: 16px;
+//       right: 16px;
+//       border: 0px;
+//       background: none;
+//     }
+//     .basic-close-light-box {
+//       position: absolute;
+//       top: -31px;
+//       right: -20px;
+//       font-size: 30px;
+//       color: rgb(255, 255, 255);
+//       text-shadow: none;
+//     }
+//     .modal-dialog {
+//       margin: 0rem 0px 1.75rem auto !important;
+//     }
+  
+//     .modal-content {
+//       height: 100vh;
+//       // overflow: auto !important;
+//       border: 0px;
+//       -webkit-box-shadow: -5px 0px 5px -3px #616161;
+//       box-shadow: -5px 0px 5px -3px #6161614d;
+//     }
+//     .modal-body {
+//       height: 89vh;
+//       overflow: auto;
+//     }
+//     .modal-header {
+//       display: initial !important;
+//     }
+//     .modal-title {
+//       font-size: 16px !important;
+//       font-weight: 500 !important;
+//       color: rgba(0, 0, 0, 0.87);
+//       letter-spacing: 0.15px;
+//     }
+//   }
+  
+  /* center modal */
+  
+  .center {
+    &.modal {
+      background: rgba(0, 0, 0, 0.6);
+      position: fixed;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      z-index: 1050;
+      display: none;
+      /*overflow: hidden;*/
+      -webkit-overflow-scrolling: touch;
+      outline: 0;
+    }
+    &.fade {
+      opacity: 0;
+      -webkit-transition: opacity 0.15s linear;
+      -o-transition: opacity 0.15s linear;
+      transition: opacity 0.15s linear;
+      &.in {
+        opacity: 1;
+      }
+    }
+    &.modal.fade {
+      &.in .modal-dialog {
+        -webkit-transform: translate(0, 0);
+        -ms-transform: translate(0, 0);
+        -o-transform: translate(0, 0);
+        transform: translate(0, 0);
+      }
+      .modal-dialog {
+        -webkit-transition: all 0.3s ease-out;
+        -o-transition: all 0.3s ease-out;
+        transition: all 0.3s ease-out;
+        -webkit-transform: translate(0, -25%);
+        -ms-transform: translate(0, -25%);
+        -o-transform: translate(0, -25%);
+        transform: translate(0, -25%);
+      }
+    }
+    .basic-close {
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      border: 0px;
+      background: none;
+    }
+    .basic-close-light-box {
+      position: absolute;
+      top: -31px;
+      right: -20px;
+      font-size: 30px;
+      color: rgb(255, 255, 255);
+      text-shadow: none;
+    }
+    .modal-header {
+      display: initial !important;
+    }
+    .modal-title {
+      font-size: 15px !important;
+    }
+    .mat-form-field {
+      width: 100% !important;
+    }
+    .btn-primary {
+      color: #fff;
+      background-color: #6200ee !important;
+      border-color: #6200ee !important;
+      border-radius: 4px;
+      font-size: 14px;
+      font-weight: 500;
+      letter-spacing: 1.25px;
+    }
+    .btn-secondary {
+      color: #6200ee;
+      background-color: white;
+      border-color: white;
+      font-size: 14px;
+      font-weight: 500;
+      letter-spacing: 1.25px;
+    }
+    .mat-chip.mat-standard-chip {
+      background-color: #dbb2ff !important;
+    }
+    .mat-hint {
+      color: rgba(0, 0, 0, 0.6);
+      font-size: 12px;
+      letter-spacing: 0.4px;
+    }
+    .mat-icon {
+      font-size: 150%;
+      line-height: 1.125;
+      color: rgba(0, 0, 0, 0.6);
+    }
+  }
+  .mat-accordion > .mat-expansion-panel-spacing:first-child,
+  .mat-accordion > *:first-child:not(.mat-expansion-panel) .mat-expansion-panel-spacing {
+    margin-top: 14px !important;
+  }
+  .headericondiv {
+    width: 100%;
+  }
+  .headericon {
+    float: right;
+    margin-left: 5px;
+    margin-top: 5px;
+    width: 150px;
+    display: flex;
+    justify-content: center;
+  }
+  .card-style {
+    margin-top: 15px !important;
+    height: 115px;
+  }
+  .mat-list-text {
+    color: #000000de;
+    font-size: 15px;
+    font-family: sans-serif;
+    padding: 0px 16px 0px 0px;
+  }
+  :host ::ng-deep .mat-list-base .mat-list-item,
+  .mat-list-base .mat-list-option {
+    height: inherit !important;
+  }
+  
+  .include-action-list {
+    text-decoration: line-through;
+  }
+  .list-group-item {
+    position: relative;
+    display: block;
+    padding: 0.5rem 1rem;
+    color: #212529;
+    text-decoration: none;
+    background-color: #fff;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.125);
+    padding-left: 0px !important;
+  }
+  .list-group-item.active {
+    z-index: 0;
+    color: #000;
+    background-color: transparent !important;
+    border-bottom-color: black;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.125);
+    border: none;
+  }
+  .config-label-1,.title-label-1 {
+    font-size: 12px;
+    letter-spacing: 1px;
+    color:#666666;
+  }
+  

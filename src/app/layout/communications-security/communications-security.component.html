@@ -1,0 +1,313 @@
+<!-- <p>manage-framework works!</p> -->
+<div *ngIf="!authStatus" class="container">
+    <mat-label class="control-frame-select">{{serviceErrorMsg}}</mat-label>
+</div>
+<div *ngIf="authStatus" class="container">
+    <mat-label class="control-frame-label"><a
+            routerLink="/dashboard/control-library/{{controlLibraryChapterData?._id}}">{{controlLibraryChapterData?.title}}</a>
+        /
+        {{controlLibraryChapterData?.domain_detail[0]?.domainId}}</mat-label>
+    <div class="row col-sm-12 col-lg-12 col-md-12 mt-5">
+        <div class="col-lg-6 col-md-6 col-sm-12 mt-1">
+            <h1 class="manage-frame-h3">{{controlLibraryChapterData?.domain_detail[0]?.title}}</h1>
+            <mat-label class="control-frame-select">{{controlLibraryChapterData?.domain_detail[0]?.description}}
+            </mat-label>
+        </div>
+        <div class="col-lg-6 col-md-6 col-sm-12 mt-1 commu-security-img">
+            <img src="{{controlLibraryChapterData?.domain_detail[0]?.image_url}}" alt="Control Image" height="80%"
+                width="100%">
+        </div>
+    </div>
+    <!-- <ng-container *ngIf="controlLibraryChapterData?.chapter_detail.length !== 0"> -->
+    <mat-accordion *ngIf="controlLibraryChapterData?.chapter_detail.length !== 0">
+        <mat-expansion-panel class="mt-4" hideToggle class="accordian-style"
+            *ngFor="let chapter of controlLibraryChapterData?.chapter_detail;let i = index"
+            (opened)="setOpened(chapter,i)" (closed)="setClosed(i)">
+            <mat-expansion-panel-header>
+                <div>
+                    <mat-panel-title>
+                        <div class="col-12">
+                            <mat-label class="col-8 config-label">{{chapter?.chapterId}}&nbsp;{{chapter?.title}}
+                            </mat-label>
+                            <!-- <mat-label class="col-4 float-end config-right-text">est.&nbsp;{{chapter?.estimate}} -->
+                            <!-- </mat-label> -->
+                        </div>
+                    </mat-panel-title>
+                    <mat-panel-description>
+                        <div class="col-12">
+                            <mat-label class="desc-label">{{chapter?.description}}
+                            </mat-label>
+                        </div>
+                    </mat-panel-description>
+                </div>
+                <!-- <mat-progress-bar mode="determinate" value="40" class="mat-progress-bar-element mt-5"> -->
+                <!-- </mat-progress-bar> -->
+                <mat-divider></mat-divider>
+            </mat-expansion-panel-header>
+            <div class="mt-2" *ngIf="controlLibraryDetails?.length > 0" class="expansion">
+                <!-- {{controlLibraryDetails| json}} -->
+                <mat-selection-list #controlLibraryDetail [(ngModel)]="selectedControlOptions"
+                    (selectionChange)="onChangeControlLine($event.option.value)">
+                    <ng-container *ngFor="let titleDetails of controlLibraryDetails">
+                        <div>
+                            <div class="col-12 d-flex" style="display: flex !important;
+                        align-items: center;
+                        justify-content: space-between;">
+                                <!-- (click)="onChangeControlLine(titleDetails)" -->
+                                <mat-list-option class="mt-0" checkboxPosition="before" [value]="titleDetails"
+                                    [selected]="titleDetails.status === 1">
+                                    <mat-label class="config-label" style="margin-right: 15px;">
+                                        {{titleDetails?.controlId}}&nbsp;<strong>{{titleDetails?.title}}:</strong>&nbsp;{{titleDetails?.description}}
+                                    </mat-label>
+                                </mat-list-option>
+                                <mat-label class="float-end config-right-text" style="width:5%"
+                                    (click)="onChange(titleDetails);"> <a><i class="fas fa-caret-right"
+                                            style="font-size:22px;"></i></a>
+                                </mat-label>
+                            </div>
+                            <div class="mb-2" style="padding: 0 0 0 7%;">
+                                <mat-progress-bar *ngIf="titleDetails.status > 0" mode="determinate"
+                                    value="{{(titleDetails.assigned_action_count.length/titleDetails.control_action_count.length)*100}}"
+                                    class="mat-progress-bar-element">
+                                </mat-progress-bar>
+                                <mat-divider></mat-divider>
+                            </div>
+                        </div>
+                    </ng-container>
+                </mat-selection-list>
+                <!-- <mat-selection-list #controlLibraryDetail -->
+                <!-- (selectionChange)="onChange(controlLibraryDetail.selectedOptions.selected)"> -->
+                <!-- <mat-list-option class="mt-0" checkboxPosition="before" -->
+                <!-- *ngFor="let titleDetails of controlLibraryDetails" [value]="titleDetails"> -->
+                <!-- <div class="col-12 d-flex" style="display: flex !important; -->
+                <!-- align-items: center; -->
+                <!-- justify-content: space-between;"> -->
+                <!-- <mat-label class="config-label">{{titleDetails?.controlId}} -->
+                <!-- {{titleDetails?.description}} -->
+                <!-- </mat-label> -->
+                <!-- <mat-label class="float-end config-right-text"><i class="fas fa-caret-right"></i></mat-label> -->
+                <!-- </div> -->
+                <!-- <mat-divider></mat-divider> -->
+                <!-- </mat-list-option> -->
+                <!--  <mat-divider class="mt-2 mb-2"></mat-divider> -->
+                <!-- </mat-selection-list> -->
+            </div>
+        </mat-expansion-panel>
+    </mat-accordion>
+    <!-- </ng-container> -->
+
+    <!-- ****************************** -->
+    <!-- Code for the righ action plane -->
+    <!-- ****************************** -->
+    <div id="assignActionsModal" class="basic modal fade" tabindex="-1" role="dialog" aria-hidden="true"
+        dialogClass="modal-dialog-centered" data-keyboard="false" data-backdrop="static">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title mb-0">{{controlLibraryActionDetails?.title}}</h5>
+                    <mat-label class="control-frame-label">{{controlLibraryChapterData?.title}} >
+                        {{controlLibraryActionDetails?.controlId}}</mat-label>
+                    <button class="close basic-close" data-dismiss="modal" aria-label="Close" (click)="closeModal()">
+                        <mat-icon>close</mat-icon>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <ng-container *ngIf="controlLibraryActionDetails?.length !== 0">
+                        <mat-label class="control-frame-select">
+                            {{!readMore?controlLibraryActionDetails?.description:controlLibraryActionDetails?.description|
+                            slice:0:100}}<span *ngIf="readMore && !lengthFlag">...</span>
+                            <a href="javascript:;" class="setup-button float-right" (click)="readMore=!readMore"
+                                *ngIf="readMore && controlLibraryActionDetails?.description.length > 100">READ MORE</a>
+                            <a href="javascript:;" class="setup-button float-right" (click)="readMore=!readMore"
+                                *ngIf="!readMore && controlLibraryActionDetails?.description.length >100">READ LESS</a>
+                        </mat-label>
+                        <div class="mt-5" *ngIf="controlLibraryActionDetails?.length !== 0">
+                            <mat-label class="control-frame-label">1.&nbsp;SELECT ACTIONS</mat-label>
+
+                            <mat-tab-group>
+                                <mat-tab label="Actions">
+                                    <mat-selection-list [(ngModel)]="selectedOptions" #allSelected
+                                        (selectionChange)="onActionSelectionChange($event)">
+                                        <mat-list-option class="mt-3"
+                                            *ngFor="let actions of controlLibraryActionDetails?.action_library | filter:true:true:'is_deleted'"
+                                            [value]="actions">
+                                            {{actions.title}}<br />
+                                            <mat-label class="desc-label mt-2 mb-3">{{actions.is_assigned === true ?
+                                                "Assigned" : ""}}
+                                            </mat-label>
+                                            <mat-divider></mat-divider>
+                                        </mat-list-option>
+                                    </mat-selection-list>
+                                    <div class="">
+                                        <mat-card class="example-card card-style col-lg-12 col-md-12 col-sm-9 mt-1">
+                                            <mat-card-content>
+                                                <mat-label class="mat-list-text">Total Action Selected :
+                                                    {{selectedOptions?.length}}</mat-label>
+                                                <mat-checkbox class="example-margin" (change)="changeSelection($event)">
+                                                    Select All Actions
+                                                </mat-checkbox>
+                                            </mat-card-content>
+                                            <div class="headericondiv col-lg-12 col-md-12 col-sm-12 mt-1">
+                                                <button mat-raised-button color="primary"
+                                                    class="setup-button headericon"
+                                                    [disabled]="selectedOptions?.length === 0"
+                                                    (click)="openSnackBar()">ASSIGN</button>
+                                                <button mat-stroked-button color="primary"
+                                                    class="setup-button headericon" (click)="markAsNA()">MARK AS
+                                                    N/A</button>
+                                            </div>
+                                        </mat-card>
+                                    </div>
+                                </mat-tab>
+                                <mat-tab label="Not Applicable({{markedNACount}})">
+                                    <mat-selection-list [(ngModel)]="selectedOptions"
+                                        (selectionChange)="onActionSelectionChange($event)">
+                                        <mat-list-option class="mt-3"
+                                            *ngFor="let actions of controlLibraryActionDetails?.action_library | filter:false:true:'is_deleted'"
+                                            [value]="actions">
+                                            <span class="include-action-list">{{actions.title}}</span><br />
+                                            <mat-divider></mat-divider>
+                                        </mat-list-option>
+                                    </mat-selection-list>
+                                    <div class="">
+                                        <mat-card class="example-card card-style col-lg-12 col-md-12 col-sm-9 mt-1">
+                                            <mat-card-content>
+                                                <mat-label class="mat-list-text">Total Action Selected :
+                                                    {{selectedOptions?.length}}</mat-label>
+                                            </mat-card-content>
+                                            <div class="headericondiv col-lg-12 col-md-12 col-sm-12 mt-1">
+                                                <button mat-stroked-button color="primary"
+                                                    class="setup-button headericon"
+                                                    (click)="markAsNA()">INCLUDE</button>
+                                            </div>
+                                        </mat-card>
+                                    </div>
+                                    <!-- <div class="row mt-3" *ngFor="let actions of controlLibraryActionDetails?.action_library | filter:false:true:'is_deleted'"> -->
+                                    <!-- <div class="col-8 config-content" > -->
+                                    <!-- <mat-label class="config-label" >{{actions.title}}</mat-label> -->
+                                    <!-- </div> -->
+                                    <!-- <div class="col-4 config-content" >	 -->
+                                    <!-- <mat-label class="float-right config-right-text">INCLUDE</mat-label> -->
+                                    <!-- </div> -->
+                                    <!-- <mat-divider></mat-divider> -->
+                                    <!-- </div> -->
+                                </mat-tab>
+                            </mat-tab-group>
+                        </div>
+
+                    </ng-container>
+                    <ng-container *ngIf="controlLibraryActionDetails?.length === 0">
+                        <div class="mt-2">
+                            <mat-label class="control-frame-label">NO ACTION AVAILABLE!</mat-label>
+                            <!-- <mat-selection-list [(ngModel)]="selectedOptions" (selectionChange)="onChangeModel($event)">
+                            <mat-list-option class="mt-3" *ngFor="let actions of controlLibraryActionDetails?.action_library">
+                                {{actions.title}}<br />
+                                <mat-label class="desc-label mt-2 mb-3">{{actions.estimate}}
+                                </mat-label>
+                                <mat-divider></mat-divider>
+                            </mat-list-option>
+                        </mat-selection-list> -->
+                        </div>
+                    </ng-container>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ******************************** -->
+    <!-- Code for the pop up action plane -->
+    <!-- ******************************** -->
+    <div id="assignResponsibleModal" class="center modal fade" tabindex="-1" role="dialog" aria-hidden="true"
+        dialogClass="modal-dialog-centered" data-keyboard="false" data-backdrop="static">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title mb-0">Assign Responsible</h5>
+                </div>
+                <div class="modal-body">
+                    <form [formGroup]="assignForm" (ngSubmit)="submitAssignUser()" novalidate>
+                        <mat-form-field appearance="outline">
+                            <mat-label>Responsible</mat-label>
+                            <mat-chip-list #chipList aria-label="Responsible selection">
+                                <mat-chip *ngFor="let user of assignUserArray" [selectable]="selectable"
+                                    [removable]="removable" (removed)="removeAssignUser(user)">
+                                    {{user.first_name}} {{user.last_name}}
+                                    <button matChipRemove *ngIf="removable">
+                                        <mat-icon>cancel</mat-icon>
+                                    </button>
+                                </mat-chip>
+                                <input placeholder="Search" #searchInput [matAutocomplete]="auto"
+                                    [matChipInputFor]="chipList" formControlName="assignUser">
+                                <mat-autocomplete #auto="matAutocomplete" (optionSelected)="addAssignUser()"
+                                    [displayWith]="displayFn">
+                                    <mat-option
+                                        *ngFor="let street of filteredOptions | async | filter:true:'ENDUSER':'access_rights'"
+                                        [value]="street">
+                                        {{street.first_name}} {{street.last_name}}
+                                    </mat-option>
+                                </mat-autocomplete>
+                            </mat-chip-list>
+                            <mat-icon matSuffix>search</mat-icon>
+                            <mat-hint>You can search by name or role</mat-hint>
+                        </mat-form-field>
+                        <mat-form-field appearance="outline">
+                            <mat-label>Contributor</mat-label>
+                            <mat-chip-list #chipList1 aria-label="Contributor selection">
+                                <mat-chip *ngFor="let user of contibuteUserArray" [selectable]="selectable"
+                                    [removable]="removable" (removed)="removeContributeUser(user)">
+                                    {{user.first_name}} {{user.last_name}}
+                                    <button matChipRemove *ngIf="removable">
+                                        <mat-icon>cancel</mat-icon>
+                                    </button>
+                                </mat-chip>
+                                <input placeholder="Search" #searchInput1 [matAutocomplete]="auto1"
+                                    [matChipInputFor]="chipList1" formControlName="contibuteUser">
+                                <mat-autocomplete #auto1="matAutocomplete" (optionSelected)="addContributeUser()"
+                                    [displayWith]="displayFn">
+                                    <mat-option
+                                        *ngFor="let street of filteredContributorOptions | async | filter:false:'ENDUSER':'access_rights'"
+                                        [value]="street">
+                                        {{street.first_name}} {{street.last_name}}
+                                    </mat-option>
+                                </mat-autocomplete>
+                            </mat-chip-list>
+                            <mat-icon matSuffix>search</mat-icon>
+                            <mat-hint>You can search by name or role</mat-hint>
+                        </mat-form-field>
+                        <!-- <hr> -->
+                        <div class="mt-3">
+                            <h5 class="modal-title mb-0">Current Contributor Assignments</h5>
+                            <hr class="m-0" />
+                            <div class="mt-3">
+                                <div class="list-group">
+                                    <a href="javascript:void(0)"
+                                        class="list-group-item list-group-item-action flex-column align-items-start active"
+                                        *ngFor="let contributor of assignedUserData">
+                                        <div class="d-flex w-100">
+                                            <div class="d-flex w-100 justify-content-between content-div">
+                                                <div class="">
+                                                    <mat-label class="config-label-1">{{contributor.first_name}}
+                                                        {{contributor.last_name}},&nbsp;{{contributor.job_role}}
+                                                    </mat-label><br />
+                                                    <!-- <mat-label class="title-label-1">{{contributor.job_role}} -->
+                                                    <!-- </mat-label> -->
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- <hr/> -->
+
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">CANCEL</button>
+                            <button type="submit" class="btn btn-primary">DISPATCH</button>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

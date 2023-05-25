@@ -1,0 +1,158 @@
+/* side modal */
+.basic {
+    &.modal {
+        // background: rgba(0, 0, 0, 0.6);
+        position: fixed;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        z-index: 1050;
+        display: none;
+        /*overflow: hidden;*/
+        -webkit-overflow-scrolling: touch;
+        outline: 0;
+    }
+    &.fade {
+        opacity: 0;
+        -webkit-transition: opacity 0.15s linear;
+        -o-transition: opacity 0.15s linear;
+        transition: opacity 0.15s linear;
+        &.in {
+            opacity: 1;
+        }
+    }
+    &.modal.fade {
+        &.in .modal-dialog {
+            -webkit-transform: translate(0, 0);
+            -ms-transform: translate(0, 0);
+            -o-transform: translate(0, 0);
+            transform: translate(0, 0);
+        }
+        .modal-dialog {
+            -webkit-transition: all 0.3s ease-out;
+            -o-transition: all 0.3s ease-out;
+            transition: all 0.3s ease-out;
+            -webkit-transform: translate(0, -25%);
+            -ms-transform: translate(0, -25%);
+            -o-transform: translate(0, -25%);
+            transform: translate(0, -25%);
+        }
+    }
+    .basic-close {
+        position: absolute;
+        top: 16px;
+        right: 16px;
+        border: 0px;
+        background: none;
+    }
+    .basic-close-light-box {
+        position: absolute;
+        top: -31px;
+        right: -20px;
+        font-size: 30px;
+        color: rgb(255, 255, 255);
+        text-shadow: none;
+    }
+    .modal-dialog {
+        margin: 0rem 0px 1.75rem auto !important;
+    }
+
+    .modal-content {
+        height: 100vh;
+        border: 0px;
+        -webkit-box-shadow: -5px 0px 5px -3px #616161;
+        box-shadow: -5px 0px 5px -3px #6161614d;
+    }
+    .modal-header {
+        display: initial !important;
+    }
+    .modal-title {
+        font-size: 20px !important;
+        font-weight: 500 !important;
+    }
+}
+
+/* center modal */
+
+.center {
+    &.modal {
+        background: rgba(0, 0, 0, 0.6);
+        position: fixed;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        z-index: 1050;
+        display: none;
+        /*overflow: hidden;*/
+        -webkit-overflow-scrolling: touch;
+        outline: 0;
+    }
+    &.fade {
+        opacity: 0;
+        -webkit-transition: opacity 0.15s linear;
+        -o-transition: opacity 0.15s linear;
+        transition: opacity 0.15s linear;
+        &.in {
+            opacity: 1;
+        }
+    }
+    &.modal.fade {
+        &.in .modal-dialog {
+            -webkit-transform: translate(0, 0);
+            -ms-transform: translate(0, 0);
+            -o-transform: translate(0, 0);
+            transform: translate(0, 0);
+        }
+        .modal-dialog {
+            -webkit-transition: all 0.3s ease-out;
+            -o-transition: all 0.3s ease-out;
+            transition: all 0.3s ease-out;
+            -webkit-transform: translate(0, -25%);
+            -ms-transform: translate(0, -25%);
+            -o-transform: translate(0, -25%);
+            transform: translate(0, -25%);
+        }
+    }
+    .basic-close {
+        position: absolute;
+        top: 16px;
+        right: 16px;
+        border: 0px;
+        background: none;
+    }
+    .basic-close-light-box {
+        position: absolute;
+        top: -31px;
+        right: -20px;
+        font-size: 30px;
+        color: rgb(255, 255, 255);
+        text-shadow: none;
+    }
+    .modal-header {
+        display: initial !important;
+    }
+    .modal-title {
+        font-size: 15px !important;
+    }
+    .mat-form-field {
+        width: 100% !important;
+    }
+    .btn-primary {
+        color: #fff;
+        background-color: #6200ee !important;
+        border-color: #6200ee !important;
+    }
+    .btn-secondary {
+        color: #6200ee;
+        background-color: white;
+        border-color: white;
+    }
+    .mat-chip.mat-standard-chip {
+        background-color: #dbb2ff !important;
+    }
+}
+.mat-card{
+    height: 100%;
+}
